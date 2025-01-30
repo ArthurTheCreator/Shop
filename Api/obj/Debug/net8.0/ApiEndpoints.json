@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "Api.Controllers.CategoryController",
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.ICategoryService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Category, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputCreateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyUpdateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyDeleteCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyViewCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetAll",
     "RelativePath": "api/v1/Category",
     "HttpMethod": "GET",
@@ -10,58 +10,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Api.Controllers.CategoryController",
-    "Method": "Update",
-    "RelativePath": "api/v1/Category",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "inputIdentifyUpdateCategory",
-        "Type": "Arguments.Arguments.Category.InputIdentifyUpdateCategory",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Api.Controllers.CategoryController",
-    "Method": "Delete",
-    "RelativePath": "api/v1/Category",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "InputIdentifyDeleteCategory",
-        "Type": "Arguments.Arguments.Category.InputIdentifyDeleteCategory",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -125,6 +73,32 @@
   },
   {
     "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/Category/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InputIdentifyDeleteCategory",
+        "Type": "Arguments.Arguments.Category.InputIdentifyDeleteCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
     "Method": "DeleteMultiple",
     "RelativePath": "api/v1/Category/DeleteMultiple",
     "HttpMethod": "DELETE",
@@ -150,7 +124,7 @@
     ]
   },
   {
-    "ContainingType": "Api.Controllers.CategoryController",
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.ICategoryService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Category, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputCreateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyUpdateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyDeleteCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyViewCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetListByListId",
     "RelativePath": "api/v1/Category/GetByListId",
     "HttpMethod": "POST",
@@ -158,7 +132,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "listInputIdentifyViewCategory",
+        "Name": "listViewDTO",
         "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.InputIdentifyViewCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
@@ -196,22 +170,48 @@
     ]
   },
   {
-    "ContainingType": "Api.Controllers.CategoryController",
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.ICategoryService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Category, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputCreateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyUpdateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyDeleteCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.InputIdentifyViewCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "Get",
     "RelativePath": "api/v1/Category/Id",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "inputIdentifyViewCategory",
+        "Name": "viewDTO",
         "Type": "Arguments.Arguments.Category.InputIdentifyViewCategory",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Arguments.Arguments.Category.OutputCategory",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Update",
+    "RelativePath": "api/v1/Category/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputIdentifyUpdateCategory",
+        "Type": "Arguments.Arguments.Category.InputIdentifyUpdateCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -248,7 +248,7 @@
     ]
   },
   {
-    "ContainingType": "Api.Controllers.ProductController",
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.IProductService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Product, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputCreateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityUpdateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentiityDeleteProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetAll",
     "RelativePath": "api/v1/Product",
     "HttpMethod": "GET",
@@ -270,7 +270,7 @@
   {
     "ContainingType": "Api.Controllers.ProductController",
     "Method": "Create",
-    "RelativePath": "api/v1/Product",
+    "RelativePath": "api/v1/Product/Create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -321,6 +321,58 @@
   },
   {
     "ContainingType": "Api.Controllers.ProductController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/Product/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputIdentifyDeleteProduct",
+        "Type": "Arguments.Arguments.Product.InputIdentiityDeleteProduct",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "DeleteMultiple",
+    "RelativePath": "api/v1/Product/DeleteMultiple",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyDeleteProduct",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputIdentiityDeleteProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.IProductService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Product, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputCreateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityUpdateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentiityDeleteProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "GetListByListId",
     "RelativePath": "api/v1/Product/GetByListId",
     "HttpMethod": "POST",
@@ -328,8 +380,34 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "listInputIdentifyViewProduct",
-        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputIdentifyViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Name": "listViewDTO",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputIdentityViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.BaseController\u00607[[Infrastructure.Interface.Service.IProductService, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Infrastructure.Persistence.Entity.Product, Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputCreateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityUpdateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentiityDeleteProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.InputIdentityViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "Get",
+    "RelativePath": "api/v1/Product/Id",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "viewDTO",
+        "Type": "Arguments.Arguments.Product.InputIdentityViewProduct",
         "IsRequired": true
       }
     ],
@@ -347,21 +425,47 @@
   },
   {
     "ContainingType": "Api.Controllers.ProductController",
-    "Method": "Get",
-    "RelativePath": "api/v1/Product/Id",
-    "HttpMethod": "GET",
+    "Method": "Update",
+    "RelativePath": "api/v1/Product/Update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "inputIdentifyViewProduct",
-        "Type": "Arguments.Arguments.Product.InputIdentifyViewProduct",
+        "Name": "inputIdentifyUpdateProduct",
+        "Type": "Arguments.Arguments.Product.InputIdentityUpdateProduct",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Arguments.Arguments.Product.OutputProduct",
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "UpdateMultiple",
+    "RelativePath": "api/v1/Product/UpdateMultiple",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyUpdateProduct",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputIdentityUpdateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

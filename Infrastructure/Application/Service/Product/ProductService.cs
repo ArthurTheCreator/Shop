@@ -11,7 +11,7 @@ using System.Net.WebSockets;
 
 namespace Infrastructure.Application;
 
-public class ProductService : BaseService<Product, InputCreateProduct, InputIdentifyUpdateProduct, InputIdentifyDeleteProduct, InputIdentifyViewProduct, OutputProduct>, IProductService
+public class ProductService : BaseService<Product, InputCreateProduct, InputIdentityUpdateProduct, InputIdentiityDeleteProduct, InputIdentityViewProduct, OutputProduct>, IProductService
 {
     #region InjectionDependecy
     private readonly IProductRepository _productRepository;
@@ -72,30 +72,30 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
     #endregion
 
     #region Update
-    public async Task<BaseResponse<bool>> Update(InputIdentifyUpdateProduct inputIdentifyUpdateProduct)
+    public async Task<BaseResponse<bool>> Update(InputIdentityUpdateProduct inputIdentifyUpdateProduct)
     {
         return await UpdateMultiple([inputIdentifyUpdateProduct]);
     }
 
-    public async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentifyUpdateProduct> listInputIdentifyUpdateProduct)
+    public async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentityUpdateProduct> listInputIdentityUpdateProduct)
     {
         var response = new BaseResponse<bool>();
-        var listIdentify = listInputIdentifyUpdateProduct.Select(i => i.Id).ToList();
-        var listCategoryId = (await _categoryRepository.GetListByListId(listIdentify)).Select(i => i.Id).ToList();
-        var listRepeteIdentify = (from i in listIdentify
+        var listIdentify = listInputIdentityUpdateProduct.Select(i => i.Id).ToList();
+        var listCategoryId = (await _categoryRepository.GetListByListId(listInputIdentityUpdateProduct.Select(i => i.InputUpdateProduct.CategoryId).ToList())).Select(i => i.Id).ToList();
+        var listRepeteIdentity = (from i in listIdentify
                                   where listIdentify.Count(j => j == i) > 1
                                   select i).ToList();
         var listOriginalProductDTO = await _productRepository.GetListByListId(listIdentify);
-        var listUpdate = (from i in listInputIdentifyUpdateProduct
+        var listUpdate = (from i in listInputIdentityUpdateProduct
                           select new
                           {
-                              InputIdentifyUpdateProduct = i,
+                              InputIdentityUpdateProduct = i,
                               OriginalProductDTO = listOriginalProductDTO.FirstOrDefault(j => j.Id == i.Id),
                               CategoryId = listCategoryId.FirstOrDefault(k => k == i.InputUpdateProduct.CategoryId),
-                              RepeteIdentify = listRepeteIdentify.FirstOrDefault(l => l == i.Id)
+                              RepeteIdentity = listRepeteIdentity.FirstOrDefault(l => l == i.Id)
                           }).ToList();
 
-        List<ProductValidate> listProductValidates = listUpdate.Select(i => new ProductValidate().Update(i.InputIdentifyUpdateProduct, _mapper.Map<ProductDTO>(i.OriginalProductDTO), i.CategoryId, i.RepeteIdentify)).ToList();
+        List<ProductValidate> listProductValidates = listUpdate.Select(i => new ProductValidate().Update(i.InputIdentityUpdateProduct, _mapper.Map<ProductDTO>(i.OriginalProductDTO), i.CategoryId, i.RepeteIdentity)).ToList();
         var validate = _productValidateService.Update(listProductValidates);
         response.Success = validate.Success;
         response.Message = validate.Message;
@@ -103,13 +103,13 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
             return response;
 
         var listUpdateProducts = (from i in validate.Content
-                                  let name = i.ProductDTO.Name = i.InputCreateProduct.Name
-                                  let deescription = i.ProductDTO.Description = i.InputCreateProduct.Description
-                                  let price = i.ProductDTO.Price = i.InputCreateProduct.Price
-                                  let stock = i.ProductDTO.Stock = i.InputCreateProduct.Stock
-                                  let categoryId = i.ProductDTO.CategoryId = i.InputCreateProduct.CategoryId
-                                  let imgageURL = i.ProductDTO.ImageURL = i.InputCreateProduct.ImageURL
-                                  let message = response.AddSuccessMessage("")
+                                  let name = i.ProductDTO.Name = i.InputIdentityUpdateProduct.InputUpdateProduct.Name
+                                  let deescription = i.ProductDTO.Description = i.InputIdentityUpdateProduct.InputUpdateProduct.Description
+                                  let price = i.ProductDTO.Price = i.InputIdentityUpdateProduct.InputUpdateProduct.Price
+                                  let stock = i.ProductDTO.Stock = i.InputIdentityUpdateProduct.InputUpdateProduct.Stock
+                                  let categoryId = i.ProductDTO.CategoryId = i.InputIdentityUpdateProduct.InputUpdateProduct.CategoryId
+                                  let imgageURL = i.ProductDTO.ImageURL = i.InputIdentityUpdateProduct.InputUpdateProduct.ImageURL
+                                  let message = response.AddSuccessMessage($"O Producto com Id: {i.ProductDTO.Id} foi atualizado com sucesso.")
                                   select i.ProductDTO).ToList();
 
         response.Content = await _productRepository.Update(_mapper.Map<List<Product>>(listUpdateProducts));
@@ -119,14 +119,40 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
 
     #region Delete
 
-    public Task<BaseResponse<bool>> Delete(InputIdentifyDeleteProduct inputIdentifyDeleteProduct)
+    public async Task<BaseResponse<bool>> Delete(InputIdentiityDeleteProduct inputIdentifyDeleteProduct)
     {
-        throw new NotImplementedException();
+        return await DeleteMultiple([inputIdentifyDeleteProduct]);
     }
 
-    public Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentifyDeleteProduct> listInputIdentifyDeleteProduct)
+    public async Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentiityDeleteProduct> listInputIdentifyDeleteProduct)
     {
-        throw new NotImplementedException();
+        var response = new BaseResponse<bool>();
+
+        var listRepeteIdentity = (from i in listInputIdentifyDeleteProduct
+                                  where listInputIdentifyDeleteProduct.Count(j => j.Id == i.Id) > 1
+                                  select i.Id).ToList();
+        var listProductExists = await _productRepository.GetListByListId(listInputIdentifyDeleteProduct.Select(i => i.Id).ToList());
+        var listDelete = (from i in listInputIdentifyDeleteProduct
+                          select new
+                          {
+                              InputIdentityDeleteProduct = i,
+                              ProductDTO = listProductExists.FirstOrDefault(j => j.Id == i.Id),
+                              RepeteIdentity = listRepeteIdentity.FirstOrDefault(k => k == i.Id)
+                          }).ToList();
+
+        List<ProductValidate> listProductValidate = listDelete.Select(i => new ProductValidate().Delete(i.InputIdentityDeleteProduct, _mapper.Map<ProductDTO>(i.ProductDTO), i.RepeteIdentity)).ToList();
+        var validate = _productValidateService.Delete(listProductValidate);
+
+        response.Success = validate.Success;
+        response.Message = validate.Message;
+        if (!response.Success)
+            return response;
+
+        var listDeleteProduct = (from i in validate.Content
+                                 let message = response.AddSuccessMessage($"O Produto: {i.ProductDTO.Name} com Id: {i.InputIdentityDeleteProduct.Id} foi deletado com sucesso")
+                                 select i.ProductDTO).ToList();
+        response.Content = await _productRepository.Delete(_mapper.Map<List<Product>>(listDeleteProduct));
+        return response;
     }
     #endregion
 }

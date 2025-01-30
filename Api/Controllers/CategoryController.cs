@@ -1,35 +1,20 @@
 ﻿using Arguments.Arguments.Base;
 using Arguments.Arguments.Category;
+using Infrastructure.Application;
 using Infrastructure.Interface.Service;
 using Infrastructure.Interface.UnitOfWOrk;
+using Infrastructure.Persistence.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-public class CategoryController : BaseController
+public class CategoryController : BaseController<ICategoryService, Category, InputCreateCategory, InputIdentifyUpdateCategory, InputIdentifyDeleteCategory, InputIdentifyViewCategory, OutputCategory>
 {
     private readonly ICategoryService _categoryService;
-    public CategoryController(IUnitOfWork unitOfWork, ICategoryService categoryService) : base(unitOfWork)
-    {
-        _categoryService = categoryService;
-    }
 
-    [HttpGet]
-    public async Task<ActionResult<List<OutputCategory>>> GetAll()
+    public CategoryController(IUnitOfWork unitOfWork, ICategoryService categoryService, ICategoryService _categoryService) : base(categoryService, unitOfWork)
     {
-        return await _categoryService.GetAll();
-    }
-
-    [HttpGet("Id")]
-    public async Task<ActionResult<OutputCategory>> Get(InputIdentifyViewCategory inputIdentifyViewCategory)
-    {
-        return await _categoryService.Get(inputIdentifyViewCategory);
-    }
-
-    [HttpPost("GetByListId")]
-    public async Task<ActionResult<List<OutputCategory>>> GetListByListId(List<InputIdentifyViewCategory> listInputIdentifyViewCategory)
-    {
-        return await _categoryService.GetListByListId(listInputIdentifyViewCategory);
+        this._categoryService = _categoryService;
     }
 
     [HttpGet("GetCategoryWithProducts")]
@@ -58,7 +43,7 @@ public class CategoryController : BaseController
         return Ok(create);
     }
 
-    [HttpPut]
+    [HttpPut("Update")]
     public async Task<ActionResult<BaseResponse<OutputCategory>>> Update(InputIdentifyUpdateCategory inputIdentifyUpdateCategory)
     {
         var update = await _categoryService.Update(inputIdentifyUpdateCategory);
@@ -69,7 +54,7 @@ public class CategoryController : BaseController
     }
 
     [HttpPut("UpdateMultiple")]
-    public async Task<ActionResult<BaseResponse<OutputCategory>>> UpdateMultiple(List<InputIdentifyUpdateCategory>  listInputIdentifyUpdateCategory)
+    public async Task<ActionResult<BaseResponse<OutputCategory>>> UpdateMultiple(List<InputIdentifyUpdateCategory> listInputIdentifyUpdateCategory)
     {
         var update = await _categoryService.UpdateMultiple(listInputIdentifyUpdateCategory);
         if (!update.Success)
@@ -78,7 +63,7 @@ public class CategoryController : BaseController
         return Ok(update);
     }
 
-    [HttpDelete]
+    [HttpDelete("Delete")]
     public async Task<ActionResult<BaseResponse<List<OutputCategory>>>> Delete(InputIdentifyDeleteCategory InputIdentifyDeleteCategory)
     {
         var delete = await _categoryService.Delete(InputIdentifyDeleteCategory);

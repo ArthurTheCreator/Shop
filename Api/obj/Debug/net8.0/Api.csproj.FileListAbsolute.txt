@@ -244,3 +244,4 @@ C:\Users\arthu_dzh116v\source\repos\Shop\Api\obj\Debug\net8.0\Api.genruntimeconf
 C:\Users\arthu_dzh116v\source\repos\Shop\Api\obj\Debug\net8.0\ref\Api.dll
 C:\Users\arthu_dzh116v\source\repos\Shop\Api\bin\Debug\net8.0\Arguments.dll
 C:\Users\arthu_dzh116v\source\repos\Shop\Api\bin\Debug\net8.0\Arguments.pdb
+C:\Users\arthu_dzh116v\source\repos\Shop\Api\obj\Debug\net8.0\Api.sourcelink.json

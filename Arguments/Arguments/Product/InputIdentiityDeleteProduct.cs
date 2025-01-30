@@ -3,7 +3,7 @@
 namespace Arguments.Arguments.Product;
 
 [method: JsonConstructor]
-public class InputIdentifyDeleteProduct(long id)
+public class InputIdentiityDeleteProduct(long id)
 {
     public long Id { get; private set; } = id;
 }

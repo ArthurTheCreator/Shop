@@ -12,3 +12,4 @@ C:\Users\arthu_dzh116v\source\repos\Shop\Arguments\obj\Debug\net8.0\refint\Argum
 C:\Users\arthu_dzh116v\source\repos\Shop\Arguments\obj\Debug\net8.0\Arguments.pdb
 C:\Users\arthu_dzh116v\source\repos\Shop\Arguments\obj\Debug\net8.0\Arguments.genruntimeconfig.cache
 C:\Users\arthu_dzh116v\source\repos\Shop\Arguments\obj\Debug\net8.0\ref\Arguments.dll
+C:\Users\arthu_dzh116v\source\repos\Shop\Arguments\obj\Debug\net8.0\Arguments.sourcelink.json
