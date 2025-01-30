@@ -1,0 +1,374 @@
+[
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Update",
+    "RelativePath": "api/v1/Category",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputIdentifyUpdateCategory",
+        "Type": "Arguments.Arguments.Category.InputIdentifyUpdateCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Delete",
+    "RelativePath": "api/v1/Category",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InputIdentifyDeleteCategory",
+        "Type": "Arguments.Arguments.Category.InputIdentifyDeleteCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Category/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InputCreateCategory",
+        "Type": "Arguments.Arguments.Category.InputCreateCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "CreateMultiple",
+    "RelativePath": "api/v1/Category/CreateMultiple",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputCreateCategory",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.InputCreateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "DeleteMultiple",
+    "RelativePath": "api/v1/Category/DeleteMultiple",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyDeleteCategory",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.InputIdentifyDeleteCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "GetListByListId",
+    "RelativePath": "api/v1/Category/GetByListId",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyViewCategory",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.InputIdentifyViewCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "GetCategoryWithProducts",
+    "RelativePath": "api/v1/Category/GetCategoryWithProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "Get",
+    "RelativePath": "api/v1/Category/Id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputIdentifyViewCategory",
+        "Type": "Arguments.Arguments.Category.InputIdentifyViewCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Category.OutputCategory",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.CategoryController",
+    "Method": "UpdateMultiple",
+    "RelativePath": "api/v1/Category/UpdateMultiple",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyUpdateCategory",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Category.InputIdentifyUpdateCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Base.BaseResponse\u00601[[Arguments.Arguments.Category.OutputCategory, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputCreateProduct",
+        "Type": "Arguments.Arguments.Product.InputCreateProduct",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Product.OutputProduct",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "CreateMultiple",
+    "RelativePath": "api/v1/Product/CreateMultiple",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputCreateProduct",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputCreateProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "GetListByListId",
+    "RelativePath": "api/v1/Product/GetByListId",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "listInputIdentifyViewProduct",
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.InputIdentifyViewProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Arguments.Arguments.Product.OutputProduct, Arguments, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Api.Controllers.ProductController",
+    "Method": "Get",
+    "RelativePath": "api/v1/Product/Id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inputIdentifyViewProduct",
+        "Type": "Arguments.Arguments.Product.InputIdentifyViewProduct",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Arguments.Arguments.Product.OutputProduct",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
