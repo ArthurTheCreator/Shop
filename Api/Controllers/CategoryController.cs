@@ -1,5 +1,4 @@
-﻿using Arguments.Arguments.Base;
-using Arguments.Arguments.Category;
+﻿using Arguments.Arguments.Category;
 using Infrastructure.Interface.Service;
 using Infrastructure.Interface.UnitOfWOrk;
 using Infrastructure.Persistence.Entity;

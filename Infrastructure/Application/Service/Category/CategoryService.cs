@@ -15,14 +15,16 @@ public class CategoryService : BaseService<ICategoryRepository, Category, InputC
     #region InjectionDependency
 
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IProductRepository _productRepository;
     private readonly ICategoryValidateService _categoryValidateService;
     private readonly IMapper _mapper;
 
-    public CategoryService(IRepository<Category> repository, IMapper mapper, ICategoryRepository categoryRepository, ICategoryValidateService categoryValidateService, ICategoryRepository _categoryRepository) : base(categoryRepository, mapper)
+    public CategoryService(IRepository<Category> repository, IMapper mapper, ICategoryRepository categoryRepository, ICategoryValidateService categoryValidateService, ICategoryRepository _categoryRepository, IProductRepository productRepository) : base(categoryRepository, mapper)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         this._categoryRepository = _categoryRepository;
         _categoryValidateService = categoryValidateService;
+        _productRepository = productRepository;
     }
     #endregion
 
@@ -129,15 +131,18 @@ public class CategoryService : BaseService<ICategoryRepository, Category, InputC
                                    where listInputIdentityDeleteCategory.Count(j => j.Id == i.Id) > 1
                                    select i.Id).ToList();
 
+        var listHasProduct = (await _productRepository.GetByListCategoryId(listInputIdentityDeleteCategory.Select(i => i.Id).ToList())).Select(i => i.CategoryId);
+
         var listDelete = (from i in listInputIdentityDeleteCategory
                           select new
                           {
                               InputIdentityDeleteCategory = i,
                               CategoryExists = listCategoryExists.FirstOrDefault(j => j.Id == i.Id),
-                              RepetedIdentity = listRepetedIdentity.FirstOrDefault(k => k == i.Id)
+                              RepetedIdentity = listRepetedIdentity.FirstOrDefault(k => k == i.Id),
+                              HasProduct = listHasProduct.FirstOrDefault(l => l == i.Id)
                           }).ToList();
 
-        List<CategoryValidate> listValidateDelete = listDelete.Select(i => new CategoryValidate().Delete(i.InputIdentityDeleteCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepetedIdentity)).ToList();
+        List<CategoryValidate> listValidateDelete = listDelete.Select(i => new CategoryValidate().Delete(i.InputIdentityDeleteCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepetedIdentity, i.HasProduct)).ToList();
 
         var validate = _categoryValidateService.Delete(listValidateDelete);
         response.Success = validate.Success;
@@ -146,7 +151,10 @@ public class CategoryService : BaseService<ICategoryRepository, Category, InputC
         if (!response.Success)
             return response;
 
-        var delete = (validate.Content.Select(i => i.CategoryDTO).ToList());
+        var delete = (from i in validate.Content
+                      let message = response.AddSuccessMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} foi excluída com sucesso.")
+                      select i.CategoryDTO).ToList();
+
         response.Content = await _categoryRepository.Delete(delete.Select(i => _mapper.Map<Category>(i)).ToList());
         return response;
 

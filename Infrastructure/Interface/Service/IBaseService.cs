@@ -1,5 +1,4 @@
 ﻿using Arguments.Arguments.Base;
-using Arguments.Arguments.Product;
 using Infrastructure.Persistence.Entity.Base;
 
 namespace Infrastructure.Interface;

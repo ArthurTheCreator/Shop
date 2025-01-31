@@ -115,9 +115,14 @@ public class CategoryValidateService : ICategoryValidateService
              let message = response.AddErrorMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} é inválida. Verifique os dados.")
              select i).ToList();
 
+        _ = (from i in listCategoryValidate
+             where i.HasProductId != 0
+             let setInvalid = i.SetInvalid()
+             let message = response.AddErrorMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} não pode ser deletada, pois contém produtos relacionados.")
+             select i).ToList();
+
         var delete = (from i in listCategoryValidate
                       where !i.Invalid
-                      let message = response.AddSuccessMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} foi excluída com sucesso.")
                       select i).ToList();
 
         if (!delete.Any())

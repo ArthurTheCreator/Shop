@@ -9,6 +9,7 @@ public class CategoryValidate : BaseValidate
     public long RepetedIdentify { get; private set; }
     public InputIdentityDeleteCategory InputIdentityDeleteCategory { get; private set; }
     public CategoryDTO CategoryDTO { get; private set; }
+    public long HasProductId { get; private set; }
 
     public CategoryValidate Create(InputCreateCategory inputCreateCategory)
     {
@@ -24,11 +25,12 @@ public class CategoryValidate : BaseValidate
         return this;
     }
 
-    public CategoryValidate Delete(InputIdentityDeleteCategory inputIdentifyDeleteCategory, CategoryDTO CategoryExists, long repetedIdentify)
+    public CategoryValidate Delete(InputIdentityDeleteCategory inputIdentifyDeleteCategory, CategoryDTO CategoryExists, long repetedIdentify, long hasProductId)
     {
         InputIdentityDeleteCategory = inputIdentifyDeleteCategory;
         CategoryDTO = CategoryExists;
         RepetedIdentify = repetedIdentify;
+        HasProductId = hasProductId;
         return this;
     }
 

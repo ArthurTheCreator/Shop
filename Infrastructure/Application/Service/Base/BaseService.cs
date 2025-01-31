@@ -1,5 +1,4 @@
 ﻿using Arguments.Arguments.Base;
-using Arguments.Arguments.Product;
 using AutoMapper;
 using Infrastructure.Interface;
 using Infrastructure.Interface.Repository;
@@ -7,8 +6,8 @@ using Infrastructure.Persistence.Entity.Base;
 
 namespace Infrastructure.Application.Service.Base;
 
-public class BaseService<ITRepository, TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO> : IBaseService<TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO> 
-    where TEntity : BaseEntity, new() 
+public class BaseService<ITRepository, TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO> : IBaseService<TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO>
+    where TEntity : BaseEntity, new()
     where TViewDTO : IHashId
     where ITRepository : IRepository<TEntity>
 {
