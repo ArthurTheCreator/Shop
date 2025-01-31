@@ -4,7 +4,7 @@ using Infrastructure.Persistence.Entity;
 
 namespace Infrastructure.Interface.Service
 {
-    public interface ICategoryService : IService<Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>
+    public interface ICategoryService : IBaseService<Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>
     {
         Task<List<OutputCategory>> GetCategoriesWithProducts();
         Task<BaseResponse<OutputCategory>> Create(InputCreateCategory inputCreateCategory);

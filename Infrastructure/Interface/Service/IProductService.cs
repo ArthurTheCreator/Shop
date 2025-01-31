@@ -4,7 +4,7 @@ using Infrastructure.Persistence.Entity;
 
 namespace Infrastructure.Interface.Service;
 
-public interface IProductService : IService<Product, InputCreateProduct, InputIdentityUpdateProduct, InputIdentiityDeleteProduct, InputIdentityViewProduct, OutputProduct>
+public interface IProductService : IBaseService<Product, InputCreateProduct, InputIdentityUpdateProduct, InputIdentiityDeleteProduct, InputIdentityViewProduct, OutputProduct>
 {
     Task<BaseResponse<OutputProduct>> Create(InputCreateProduct inputCreateProduct);
     Task<BaseResponse<List<OutputProduct>>> CreateMultiple(List<InputCreateProduct> listInputCreateProduct);

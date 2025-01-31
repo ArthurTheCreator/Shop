@@ -9,7 +9,7 @@ using Infrastructure.Persistence.Entity;
 
 namespace Infrastructure.Application;
 
-public class CategoryService : BaseService<Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>, ICategoryService
+public class CategoryService : BaseService<ICategoryRepository, Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>, ICategoryService
 {
 
     #region InjectionDependency
@@ -18,10 +18,10 @@ public class CategoryService : BaseService<Category, InputCreateCategory, InputI
     private readonly ICategoryValidateService _categoryValidateService;
     private readonly IMapper _mapper;
 
-    public CategoryService(IRepository<Category> repository, IMapper mapper, ICategoryRepository categoryRepository, ICategoryValidateService categoryValidateService) : base(repository, mapper)
+    public CategoryService(IRepository<Category> repository, IMapper mapper, ICategoryRepository categoryRepository, ICategoryValidateService categoryValidateService, ICategoryRepository _categoryRepository) : base(categoryRepository, mapper)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _categoryRepository = categoryRepository;
+        this._categoryRepository = _categoryRepository;
         _categoryValidateService = categoryValidateService;
     }
     #endregion

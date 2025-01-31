@@ -10,24 +10,24 @@ using Infrastructure.Persistence.Entity;
 
 namespace Infrastructure.Application;
 
-public class ProductService : BaseService<Product, InputCreateProduct, InputIdentityUpdateProduct, InputIdentiityDeleteProduct, InputIdentityViewProduct, OutputProduct>, IProductService
+public class ProductService : BaseService<IProductRepository, Product, InputCreateProduct, InputIdentityUpdateProduct, InputIdentiityDeleteProduct, InputIdentityViewProduct, OutputProduct>, IProductService
 {
     #region InjectionDependecy
     private readonly IProductRepository _productRepository;
     private readonly ICategoryRepository _categoryRepository;
     private readonly IProductValidateService _productValidateService;
     private readonly IMapper _mapper;
-    public ProductService(IRepository<Product> repository, IMapper mapper, IProductRepository productRepository, ICategoryRepository categoryRepository, IProductValidateService productValidateService) : base(repository, mapper)
+    public ProductService(IRepository<Product> repository, IMapper mapper, IProductRepository productRepository, ICategoryRepository categoryRepository, IProductValidateService productValidateService, IProductRepository _productRepository) : base(productRepository, mapper)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _productRepository = productRepository;
+        this._productRepository = _productRepository;
         _categoryRepository = categoryRepository;
         _productValidateService = productValidateService;
     }
     #endregion
 
     #region Create
-    public async Task<BaseResponse<OutputProduct>> Create(InputCreateProduct inputCreateProduct)
+    public override async Task<BaseResponse<OutputProduct>> Create(InputCreateProduct inputCreateProduct)
     {
         var response = new BaseResponse<OutputProduct>();
         var validate = await CreateMultiple([inputCreateProduct]);
@@ -39,7 +39,7 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
         response.Content = validate.Content.FirstOrDefault();
         return response;
     }
-    public async Task<BaseResponse<List<OutputProduct>>> CreateMultiple(List<InputCreateProduct> listInputCreateProduct)
+    public override async Task<BaseResponse<List<OutputProduct>>> CreateMultiple(List<InputCreateProduct> listInputCreateProduct)
     {
         var response = new BaseResponse<List<OutputProduct>>();
         var listCategory = (await _categoryRepository.GetListByListId(listInputCreateProduct.Select(i => i.CategoryId).ToList())).Select(j => j.Id).ToList();
@@ -71,12 +71,12 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
     #endregion
 
     #region Update
-    public async Task<BaseResponse<bool>> Update(InputIdentityUpdateProduct inputIdentifyUpdateProduct)
+    public override async Task<BaseResponse<bool>> Update(InputIdentityUpdateProduct inputIdentifyUpdateProduct)
     {
         return await UpdateMultiple([inputIdentifyUpdateProduct]);
     }
 
-    public async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentityUpdateProduct> listInputIdentityUpdateProduct)
+    public override async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentityUpdateProduct> listInputIdentityUpdateProduct)
     {
         var response = new BaseResponse<bool>();
         var listIdentify = listInputIdentityUpdateProduct.Select(i => i.Id).ToList();
@@ -118,12 +118,12 @@ public class ProductService : BaseService<Product, InputCreateProduct, InputIden
 
     #region Delete
 
-    public async Task<BaseResponse<bool>> Delete(InputIdentiityDeleteProduct inputIdentifyDeleteProduct)
+    public override async Task<BaseResponse<bool>> Delete(InputIdentiityDeleteProduct inputIdentifyDeleteProduct)
     {
         return await DeleteMultiple([inputIdentifyDeleteProduct]);
     }
 
-    public async Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentiityDeleteProduct> listInputIdentifyDeleteProduct)
+    public override async Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentiityDeleteProduct> listInputIdentifyDeleteProduct)
     {
         var response = new BaseResponse<bool>();
 

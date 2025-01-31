@@ -10,7 +10,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Product, OutputProduct>();
+        CreateMap<Product, OutputProduct>()
+            .ForMember(i => i.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
         CreateMap<Product, ProductDTO>().ReverseMap();
         CreateMap<Category, OutputCategory>();
         CreateMap<Category, CategoryDTO>().ReverseMap();

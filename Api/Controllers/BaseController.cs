@@ -1,4 +1,6 @@
-﻿using Infrastructure.Interface;
+﻿using Arguments.Arguments.Base;
+using Arguments.Arguments.Product;
+using Infrastructure.Interface;
 using Infrastructure.Interface.UnitOfWOrk;
 using Infrastructure.Persistence.Entity.Base;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +11,7 @@ namespace Api.Controllers;
 [Route("api/v1/[controller]")]
 [ApiController]
 public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO> : Controller
-    where TService : IService<TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO>
+    where TService : IBaseService<TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO>
     where TEntity : BaseEntity, new()
 {
     #region Dependency Injaction
@@ -56,4 +58,75 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
         return Ok(await _service.GetListByListId(listViewDTO));
     }
     #endregion
+
+    #region Create
+    [HttpPost("Create")]
+    public async Task<ActionResult<TOutuputDTO>> Create(TCreateDTO createDTO)
+    {
+        var create = await _service.Create(createDTO);
+        if (!create.Success)
+            return BadRequest(create);
+
+        return Ok(create);
+    }
+
+    [HttpPost("CreateMultiple")]
+    public async Task<ActionResult<List<OutputProduct>>> CreateMultiple(List<TCreateDTO> listCreateDTO)
+    {
+        var create = await _service.CreateMultiple(listCreateDTO);
+        if (!create.Success)
+            return BadRequest(create);
+
+        return Ok(create);
+    }
+    #endregion
+
+    #region Update
+    [HttpPut("Update")]
+    public async Task<ActionResult<BaseResponse<bool>>> Update(TUpdateDTO UpdateDTO)
+    {
+        var update = await _service.Update(UpdateDTO);
+
+        if (!update.Success)
+            return BadRequest(update);
+
+        return Ok(update);
+    }
+
+    [HttpPut("UpdateMultiple")]
+    public async Task<ActionResult<BaseResponse<bool>>> UpdateMultiple(List<TUpdateDTO> listUpdateDTO)
+    {
+        var update = await _service.UpdateMultiple(listUpdateDTO);
+
+        if (!update.Success)
+            return BadRequest(update);
+
+        return Ok(update);
+    }
+    #endregion
+
+    #region Delete
+    [HttpDelete("Delete")]
+    public async Task<ActionResult<BaseResponse<bool>>> Delete(TDeleteDTO deleteDTO)
+    {
+        var update = await _service.Delete(deleteDTO);
+
+        if (!update.Success)
+            return BadRequest(update);
+
+        return Ok(update);
+    }
+
+    [HttpDelete("DeleteMultiple")]
+    public async Task<ActionResult<BaseResponse<bool>>> DeleteMultiple(List<TDeleteDTO> listdeleteDTO)
+    {
+        var update = await _service.DeleteMultiple(listdeleteDTO);
+
+        if (!update.Success)
+            return BadRequest(update);
+
+        return Ok(update);
+    }
+    #endregion
+
 }
