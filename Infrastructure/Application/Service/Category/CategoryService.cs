@@ -9,7 +9,7 @@ using Infrastructure.Persistence.Entity;
 
 namespace Infrastructure.Application;
 
-public class CategoryService : BaseService<Category, InputCreateCategory, InputIdentifyUpdateCategory, InputIdentifyDeleteCategory, InputIdentifyViewCategory, OutputCategory>, ICategoryService
+public class CategoryService : BaseService<Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>, ICategoryService
 {
 
     #region InjectionDependency
@@ -29,7 +29,7 @@ public class CategoryService : BaseService<Category, InputCreateCategory, InputI
     #region Get
     public async Task<List<OutputCategory>> GetCategoriesWithProducts()
     {
-        return _mapper.Map<List<OutputCategory>>(await  _categoryRepository.CategoriesWithProducts());
+        return _mapper.Map<List<OutputCategory>>(await _categoryRepository.CategoriesWithProducts());
     }
     #endregion
 
@@ -71,28 +71,28 @@ public class CategoryService : BaseService<Category, InputCreateCategory, InputI
 
     #region Update
 
-    public async Task<BaseResponse<bool>> Update(InputIdentifyUpdateCategory inputIdentifyUpdateCategory)
+    public async Task<BaseResponse<bool>> Update(InputIdentityUpdateCategory inputIdentityUpdateCategory)
     {
-        return await UpdateMultiple([inputIdentifyUpdateCategory]);
+        return await UpdateMultiple([inputIdentityUpdateCategory]);
     }
 
-    public async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentifyUpdateCategory> listInputIdentifyUpdateCategory)
+    public async Task<BaseResponse<bool>> UpdateMultiple(List<InputIdentityUpdateCategory> listInputIdentityUpdateCategory)
     {
         var response = new BaseResponse<bool>();
 
-        var listCategoryExists = await _categoryRepository.GetListByListId(listInputIdentifyUpdateCategory.Select(i => i.Id).ToList());
-        var listRepeteIdentify = (from i in listInputIdentifyUpdateCategory
-                                  where listInputIdentifyUpdateCategory.Count(j => j.Id == i.Id) > 1
+        var listCategoryExists = await _categoryRepository.GetListByListId(listInputIdentityUpdateCategory.Select(i => i.Id).ToList());
+        var listRepeteIdentity = (from i in listInputIdentityUpdateCategory
+                                  where listInputIdentityUpdateCategory.Count(j => j.Id == i.Id) > 1
                                   select i.Id).ToList();
-        var listUpdate = (from i in listInputIdentifyUpdateCategory
+        var listUpdate = (from i in listInputIdentityUpdateCategory
                           select new
                           {
                               InputUpdateCategory = i,
                               CategoryExists = listCategoryExists.FirstOrDefault(j => j.Id == i.Id),
-                              RepeteIdentify = listRepeteIdentify.FirstOrDefault(k => k == i.Id)
+                              RepeteIdentity = listRepeteIdentity.FirstOrDefault(k => k == i.Id)
                           }).ToList();
 
-        List<CategoryValidate> listValidateUpdate = listUpdate.Select(i => new CategoryValidate().Update(i.InputUpdateCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepeteIdentify)).ToList();
+        List<CategoryValidate> listValidateUpdate = listUpdate.Select(i => new CategoryValidate().Update(i.InputUpdateCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepeteIdentity)).ToList();
 
         var validate = _categoryValidateService.Update(listValidateUpdate);
         response.Success = validate.Success;
@@ -103,8 +103,8 @@ public class CategoryService : BaseService<Category, InputCreateCategory, InputI
 
         var update = (from i in validate.Content
                       where !i.Invalid
-                      let name = i.CategoryDTO.Name = i.InputIdentifyUpdateCategory.InputUpdateCategory.Name
-                      let description = i.CategoryDTO.Description = i.InputIdentifyUpdateCategory.InputUpdateCategory.Description
+                      let name = i.CategoryDTO.Name = i.InputIdentityUpdateCategory.InputUpdateCategory.Name
+                      let description = i.CategoryDTO.Description = i.InputIdentityUpdateCategory.InputUpdateCategory.Description
                       let message = response.AddSuccessMessage($"A Categoria com id: {i.CategoryDTO.Id} foi atualizada com sucesso.")
                       select i.CategoryDTO).ToList();
 
@@ -114,30 +114,30 @@ public class CategoryService : BaseService<Category, InputCreateCategory, InputI
     #endregion
 
     #region Delete
-    public async Task<BaseResponse<bool>> Delete(InputIdentifyDeleteCategory inputIdentifyDeleteCategory)
+    public async Task<BaseResponse<bool>> Delete(InputIdentityDeleteCategory inputIdentityDeleteCategory)
     {
-        return await DeleteMultiple([inputIdentifyDeleteCategory]);
+        return await DeleteMultiple([inputIdentityDeleteCategory]);
     }
 
-    public async Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentifyDeleteCategory> listInputIdentifyDeleteCategory)
+    public async Task<BaseResponse<bool>> DeleteMultiple(List<InputIdentityDeleteCategory> listInputIdentityDeleteCategory)
     {
         var response = new BaseResponse<bool>();
 
-        var listCategoryExists = await _categoryRepository.GetListByListId(listInputIdentifyDeleteCategory.Select(i => i.Id).ToList());
+        var listCategoryExists = await _categoryRepository.GetListByListId(listInputIdentityDeleteCategory.Select(i => i.Id).ToList());
 
-        var listRepetedIdentify = (from i in listInputIdentifyDeleteCategory
-                                   where listInputIdentifyDeleteCategory.Count(j => j.Id == i.Id) > 1
+        var listRepetedIdentity = (from i in listInputIdentityDeleteCategory
+                                   where listInputIdentityDeleteCategory.Count(j => j.Id == i.Id) > 1
                                    select i.Id).ToList();
 
-        var listDelete = (from i in listInputIdentifyDeleteCategory
+        var listDelete = (from i in listInputIdentityDeleteCategory
                           select new
                           {
-                              InputIdentifyDeleteCategory = i,
+                              InputIdentityDeleteCategory = i,
                               CategoryExists = listCategoryExists.FirstOrDefault(j => j.Id == i.Id),
-                              RepetedIdentify = listRepetedIdentify.FirstOrDefault(k => k == i.Id)
+                              RepetedIdentity = listRepetedIdentity.FirstOrDefault(k => k == i.Id)
                           }).ToList();
 
-        List<CategoryValidate> listValidateDelete = listDelete.Select(i => new CategoryValidate().Delete(i.InputIdentifyDeleteCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepetedIdentify)).ToList();
+        List<CategoryValidate> listValidateDelete = listDelete.Select(i => new CategoryValidate().Delete(i.InputIdentityDeleteCategory, _mapper.Map<CategoryDTO>(i.CategoryExists), i.RepetedIdentity)).ToList();
 
         var validate = _categoryValidateService.Delete(listValidateDelete);
         response.Success = validate.Success;

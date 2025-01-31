@@ -1,6 +1,4 @@
-﻿using Arguments.Arguments.Base;
-using Infrastructure.Application.Service.Base;
-using Infrastructure.Interface;
+﻿using Infrastructure.Interface;
 using Infrastructure.Interface.UnitOfWOrk;
 using Infrastructure.Persistence.Entity.Base;
 using Microsoft.AspNetCore.Mvc;

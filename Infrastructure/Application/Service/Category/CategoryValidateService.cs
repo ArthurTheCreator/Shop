@@ -11,7 +11,7 @@ public class CategoryValidateService : ICategoryValidateService
     {
         var response = new BaseResponse<List<CategoryValidate>>();
 
-        if(listCategoryValidate == null)
+        if (listCategoryValidate == null)
         {
             response.AddErrorMessage("Não é possivél cadastrar uma categoria vazia.");
             response.Success = false;
@@ -60,27 +60,27 @@ public class CategoryValidateService : ICategoryValidateService
         _ = (from i in listCategoryValidate
              where i.RepetedIdentify != 0
              let setInvalid = i.SetInvalid()
-             let message = response.AddErrorMessage($"A Categoria com Id: {i.InputIdentifyUpdateCategory.Id} não pode ser atualizado, por ser repetido")
+             let message = response.AddErrorMessage($"A Categoria com Id: {i.InputIdentityUpdateCategory.Id} não pode ser atualizado, por ser repetido")
              select i).ToList();
 
         _ = (from i in listCategoryValidate
              where i.CategoryDTO == null
              let setInvalid = i.SetInvalid()
-             let message = response.AddErrorMessage($"A Categoria com Id: {i.InputIdentifyUpdateCategory.Id} não pode ser atualizado, por não existir")
+             let message = response.AddErrorMessage($"A Categoria com Id: {i.InputIdentityUpdateCategory.Id} não pode ser atualizado, por não existir")
              select i).ToList();
 
         _ = (from i in listCategoryValidate
-             where i.InputIdentifyUpdateCategory.InputUpdateCategory.Name.Length > 40 || string.IsNullOrEmpty(i.InputIdentifyUpdateCategory.InputUpdateCategory.Name) || string.IsNullOrWhiteSpace(i.InputIdentifyUpdateCategory.InputUpdateCategory.Name)
+             where i.InputIdentityUpdateCategory.InputUpdateCategory.Name.Length > 40 || string.IsNullOrEmpty(i.InputIdentityUpdateCategory.InputUpdateCategory.Name) || string.IsNullOrWhiteSpace(i.InputIdentityUpdateCategory.InputUpdateCategory.Name)
              let setInvalid = i.SetInvalid()
-             let message = response.AddSuccessMessage(i.InputIdentifyUpdateCategory.InputUpdateCategory.Name.Length > 40 ? $"A categoria com o nome {i.InputIdentifyUpdateCategory.InputUpdateCategory.Name} não pode ser autalizada, pois ultrapassa o limite de 40 caracteres."
+             let message = response.AddSuccessMessage(i.InputIdentityUpdateCategory.InputUpdateCategory.Name.Length > 40 ? $"A categoria com o nome {i.InputIdentityUpdateCategory.InputUpdateCategory.Name} não pode ser autalizada, pois ultrapassa o limite de 40 caracteres."
              : "Não é possível atualizar uma categoria com nome vazio.")
              select i).ToList();
 
         _ = (from i in listCategoryValidate
-             where i.InputIdentifyUpdateCategory.InputUpdateCategory.Description.Length > 100 || string.IsNullOrEmpty(i.InputIdentifyUpdateCategory.InputUpdateCategory.Description) || string.IsNullOrWhiteSpace(i.InputIdentifyUpdateCategory.InputUpdateCategory.Description)
+             where i.InputIdentityUpdateCategory.InputUpdateCategory.Description.Length > 100 || string.IsNullOrEmpty(i.InputIdentityUpdateCategory.InputUpdateCategory.Description) || string.IsNullOrWhiteSpace(i.InputIdentityUpdateCategory.InputUpdateCategory.Description)
              let setInvalid = i.SetInvalid()
-             let message = response.AddSuccessMessage(i.InputIdentifyUpdateCategory.InputUpdateCategory.Description.Length > 100 ? $"A categoria com o nome {i.InputIdentifyUpdateCategory.InputUpdateCategory.Name} não pode ser atualizar, pois a descrição {i.InputIdentifyUpdateCategory.InputUpdateCategory.Description} ultrapassa o limite máximo de 100 caracteres."
-             : $"A categoria com o nome {i.InputIdentifyUpdateCategory.InputUpdateCategory.Name} não pode ser atualizar, pois a descrição está vazia.")
+             let message = response.AddSuccessMessage(i.InputIdentityUpdateCategory.InputUpdateCategory.Description.Length > 100 ? $"A categoria com o nome {i.InputIdentityUpdateCategory.InputUpdateCategory.Name} não pode ser atualizar, pois a descrição {i.InputIdentityUpdateCategory.InputUpdateCategory.Description} ultrapassa o limite máximo de 100 caracteres."
+             : $"A categoria com o nome {i.InputIdentityUpdateCategory.InputUpdateCategory.Name} não pode ser atualizar, pois a descrição está vazia.")
              select i).ToList();
 
         var update = (from i in listCategoryValidate
@@ -106,18 +106,18 @@ public class CategoryValidateService : ICategoryValidateService
         _ = (from i in listCategoryValidate
              where i.RepetedIdentify != 0
              let setInvalid = i.SetInvalid()
-             let message = response.AddErrorMessage($"O Id: {i.InputIdentifyDeleteCategory.Id} foi digitado repetidas vezes, não é possível deletar a categoria com esse Id")
+             let message = response.AddErrorMessage($"O Id: {i.InputIdentityDeleteCategory.Id} foi digitado repetidas vezes, não é possível deletar a categoria com esse Id")
              select i).ToList();
 
         _ = (from i in listCategoryValidate
              where i.CategoryDTO == null
              let setInvalid = i.SetInvalid()
-             let message = response.AddErrorMessage($"Categoria com ID: {i.InputIdentifyDeleteCategory.Id} é inválida. Verifique os dados.")
+             let message = response.AddErrorMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} é inválida. Verifique os dados.")
              select i).ToList();
 
         var delete = (from i in listCategoryValidate
                       where !i.Invalid
-                      let message = response.AddSuccessMessage($"Categoria com ID: {i.InputIdentifyDeleteCategory.Id} foi excluída com sucesso.")
+                      let message = response.AddSuccessMessage($"Categoria com ID: {i.InputIdentityDeleteCategory.Id} foi excluída com sucesso.")
                       select i).ToList();
 
         if (!delete.Any())

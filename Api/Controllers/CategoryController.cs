@@ -1,6 +1,5 @@
 ﻿using Arguments.Arguments.Base;
 using Arguments.Arguments.Category;
-using Infrastructure.Application;
 using Infrastructure.Interface.Service;
 using Infrastructure.Interface.UnitOfWOrk;
 using Infrastructure.Persistence.Entity;
@@ -8,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-public class CategoryController : BaseController<ICategoryService, Category, InputCreateCategory, InputIdentifyUpdateCategory, InputIdentifyDeleteCategory, InputIdentifyViewCategory, OutputCategory>
+public class CategoryController : BaseController<ICategoryService, Category, InputCreateCategory, InputIdentityUpdateCategory, InputIdentityDeleteCategory, InputIdentityViewCategory, OutputCategory>
 {
     private readonly ICategoryService _categoryService;
 
@@ -44,7 +43,7 @@ public class CategoryController : BaseController<ICategoryService, Category, Inp
     }
 
     [HttpPut("Update")]
-    public async Task<ActionResult<BaseResponse<OutputCategory>>> Update(InputIdentifyUpdateCategory inputIdentifyUpdateCategory)
+    public async Task<ActionResult<BaseResponse<OutputCategory>>> Update(InputIdentityUpdateCategory inputIdentifyUpdateCategory)
     {
         var update = await _categoryService.Update(inputIdentifyUpdateCategory);
         if (!update.Success)
@@ -54,7 +53,7 @@ public class CategoryController : BaseController<ICategoryService, Category, Inp
     }
 
     [HttpPut("UpdateMultiple")]
-    public async Task<ActionResult<BaseResponse<OutputCategory>>> UpdateMultiple(List<InputIdentifyUpdateCategory> listInputIdentifyUpdateCategory)
+    public async Task<ActionResult<BaseResponse<OutputCategory>>> UpdateMultiple(List<InputIdentityUpdateCategory> listInputIdentifyUpdateCategory)
     {
         var update = await _categoryService.UpdateMultiple(listInputIdentifyUpdateCategory);
         if (!update.Success)
@@ -64,7 +63,7 @@ public class CategoryController : BaseController<ICategoryService, Category, Inp
     }
 
     [HttpDelete("Delete")]
-    public async Task<ActionResult<BaseResponse<List<OutputCategory>>>> Delete(InputIdentifyDeleteCategory InputIdentifyDeleteCategory)
+    public async Task<ActionResult<BaseResponse<List<OutputCategory>>>> Delete(InputIdentityDeleteCategory InputIdentifyDeleteCategory)
     {
         var delete = await _categoryService.Delete(InputIdentifyDeleteCategory);
         if (!delete.Success)
@@ -74,7 +73,7 @@ public class CategoryController : BaseController<ICategoryService, Category, Inp
     }
 
     [HttpDelete("DeleteMultiple")]
-    public async Task<ActionResult<BaseResponse<List<OutputCategory>>>> DeleteMultiple(List<InputIdentifyDeleteCategory> listInputIdentifyDeleteCategory)
+    public async Task<ActionResult<BaseResponse<List<OutputCategory>>>> DeleteMultiple(List<InputIdentityDeleteCategory> listInputIdentifyDeleteCategory)
     {
         var delete = await _categoryService.DeleteMultiple(listInputIdentifyDeleteCategory);
         if (!delete.Success)

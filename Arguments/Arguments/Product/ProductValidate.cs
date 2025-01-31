@@ -11,13 +11,13 @@ public class ProductValidate : BaseValidate
     public ProductDTO ProductDTO { get; private set; }
     public long RepeteIdentity { get; private set; }
 
-    public ProductValidate Create (InputCreateProduct inputCreateProduct, long brandId)
+    public ProductValidate Create(InputCreateProduct inputCreateProduct, long brandId)
     {
         InputCreateProduct = inputCreateProduct;
         CategoryId = brandId;
         return this;
     }
-    public ProductValidate Update(InputIdentityUpdateProduct inputIdentifyUpdateProduct, ProductDTO productDTO, long categoryId,  long repeteIdentify)
+    public ProductValidate Update(InputIdentityUpdateProduct inputIdentifyUpdateProduct, ProductDTO productDTO, long categoryId, long repeteIdentify)
     {
         InputIdentityUpdateProduct = inputIdentifyUpdateProduct;
         CategoryId = categoryId;

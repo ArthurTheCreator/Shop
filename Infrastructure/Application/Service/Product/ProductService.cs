@@ -7,7 +7,6 @@ using Infrastructure.Interface.Repository;
 using Infrastructure.Interface.Service;
 using Infrastructure.Interface.ValidateService;
 using Infrastructure.Persistence.Entity;
-using System.Net.WebSockets;
 
 namespace Infrastructure.Application;
 
