@@ -1,4 +1,5 @@
 ﻿using Arguments.Arguments.Base;
+using Arguments.Arguments.Base.DTO;
 using Arguments.Arguments.Product;
 using Infrastructure.Interface;
 using Infrastructure.Interface.UnitOfWOrk;
@@ -10,9 +11,14 @@ namespace Api.Controllers;
 
 [Route("api/v1/[controller]")]
 [ApiController]
-public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO> : Controller
-    where TService : IBaseService<TEntity, TCreateDTO, TUpdateDTO, TDeleteDTO, TViewDTO, TOutuputDTO>
+public class BaseController<TService, TEntity, TInputCreateDTO, TInputIdentityUpdateDTO, TInputIdentityDeleteDTO, TInputIdentityViewDTO, TOutuputDTO> : Controller
+    where TService : IBaseService<TEntity, TInputCreateDTO, TInputIdentityUpdateDTO, TInputIdentityDeleteDTO, TInputIdentityViewDTO, TOutuputDTO>
     where TEntity : BaseEntity, new()
+    where TInputCreateDTO : BaseInputCreate<TInputCreateDTO>
+    where TInputIdentityUpdateDTO : BaseInputIdentityUpdate<TInputIdentityUpdateDTO>
+    where TInputIdentityDeleteDTO : BaseInputIdentityDelete<TInputIdentityDeleteDTO>
+    where TInputIdentityViewDTO : BaseInputIdentityView<TInputIdentityViewDTO>, IHashId
+    where TOutuputDTO : BaseOutuput<TOutuputDTO>
 {
     #region Dependency Injaction
     protected readonly TService _service;
@@ -47,13 +53,13 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
     }
 
     [HttpPost("Id")]
-    public async Task<ActionResult<List<TOutuputDTO>>> Get(TViewDTO viewDTO)
+    public async Task<ActionResult<List<TOutuputDTO>>> Get(TInputIdentityViewDTO viewDTO)
     {
         return Ok(await _service.Get(viewDTO));
     }
 
     [HttpPost("GetByListId")]
-    public async Task<ActionResult<List<TOutuputDTO>>> GetListByListId(List<TViewDTO> listViewDTO)
+    public async Task<ActionResult<List<TOutuputDTO>>> GetListByListId(List<TInputIdentityViewDTO> listViewDTO)
     {
         return Ok(await _service.GetListByListId(listViewDTO));
     }
@@ -61,7 +67,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
 
     #region Create
     [HttpPost("Create")]
-    public async Task<ActionResult<TOutuputDTO>> Create(TCreateDTO createDTO)
+    public async Task<ActionResult<TOutuputDTO>> Create(TInputCreateDTO createDTO)
     {
         var create = await _service.Create(createDTO);
         if (!create.Success)
@@ -71,7 +77,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
     }
 
     [HttpPost("CreateMultiple")]
-    public async Task<ActionResult<List<OutputProduct>>> CreateMultiple(List<TCreateDTO> listCreateDTO)
+    public async Task<ActionResult<List<OutputProduct>>> CreateMultiple(List<TInputCreateDTO> listCreateDTO)
     {
         var create = await _service.CreateMultiple(listCreateDTO);
         if (!create.Success)
@@ -83,7 +89,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
 
     #region Update
     [HttpPut("Update")]
-    public async Task<ActionResult<BaseResponse<bool>>> Update(TUpdateDTO UpdateDTO)
+    public async Task<ActionResult<BaseResponse<bool>>> Update(TInputIdentityUpdateDTO UpdateDTO)
     {
         var update = await _service.Update(UpdateDTO);
 
@@ -94,7 +100,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
     }
 
     [HttpPut("UpdateMultiple")]
-    public async Task<ActionResult<BaseResponse<bool>>> UpdateMultiple(List<TUpdateDTO> listUpdateDTO)
+    public async Task<ActionResult<BaseResponse<bool>>> UpdateMultiple(List<TInputIdentityUpdateDTO> listUpdateDTO)
     {
         var update = await _service.UpdateMultiple(listUpdateDTO);
 
@@ -107,7 +113,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
 
     #region Delete
     [HttpDelete("Delete")]
-    public async Task<ActionResult<BaseResponse<bool>>> Delete(TDeleteDTO deleteDTO)
+    public async Task<ActionResult<BaseResponse<bool>>> Delete(TInputIdentityDeleteDTO deleteDTO)
     {
         var update = await _service.Delete(deleteDTO);
 
@@ -118,7 +124,7 @@ public class BaseController<TService, TEntity, TCreateDTO, TUpdateDTO, TDeleteDT
     }
 
     [HttpDelete("DeleteMultiple")]
-    public async Task<ActionResult<BaseResponse<bool>>> DeleteMultiple(List<TDeleteDTO> listdeleteDTO)
+    public async Task<ActionResult<BaseResponse<bool>>> DeleteMultiple(List<TInputIdentityDeleteDTO> listdeleteDTO)
     {
         var update = await _service.DeleteMultiple(listdeleteDTO);
 

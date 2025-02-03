@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Conversor\" />
+    <Compile Remove="Conversor\**" />
+    <EmbeddedResource Remove="Conversor\**" />
+    <None Remove="Conversor\**" />
   </ItemGroup>
 
   <ItemGroup>

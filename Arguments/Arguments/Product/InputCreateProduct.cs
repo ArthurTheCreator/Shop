@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Arguments.Arguments.Base.DTO;
+using System.Text.Json.Serialization;
 
 namespace Arguments.Arguments.Product
 {
     [method: JsonConstructor]
-    public class InputCreateProduct(string? name, string? description, decimal price, long stock, long categoryId, string? imageURL)
+    public class InputCreateProduct(string? name, string? description, decimal price, long stock, long categoryId, string? imageURL) : BaseInputCreate<InputCreateProduct>
     {
         public string? Name { get; private set; } = name;
         public string? Description { get; private set; } = description;
