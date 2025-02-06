@@ -1,3 +1,5 @@
+using Shop.Web.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +10,7 @@ builder.Services.AddHttpClient("ProductAPI", c =>
     c.BaseAddress = new Uri(builder.Configuration["ServiceUri:ProductAPI"]);
 });
 
+builder.Services.ConfigureInjectionDependecy();
 
 var app = builder.Build();
 

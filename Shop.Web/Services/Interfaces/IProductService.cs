@@ -4,9 +4,9 @@ namespace Shop.Web.Services.Interfaces;
 
 public interface IProductService
 {
-    Task<List<ProductViewModel>> GetAll();
-    Task<ProductViewModel> GetById(long id);
-    Task<ProductViewModel> Create(ProductViewModel productViewModel);
-    Task<ProductViewModel> Update(ProductViewModel productViewModel);
-    Task<bool> Delete(long id);
+    Task<List<OutputProduct>> GetAll();
+    Task<OutputProduct> GetById(InputIdentityViewProduct inputIdentityViewProduct);
+    Task<OutputProduct> Create(InputCreateProduct inputCreateProduct);
+    Task<OutputProduct> Update(InputIdentityUpdateProduct inputIdentityUpdateProduct);
+    Task<bool> Delete(InputIdentiityDeleteProduct inputIdentiityDeleteProduct);
 }
