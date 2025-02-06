@@ -17,12 +17,12 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
     }
 
 
-    public async Task<List<TEntity>> GetAll()
+    public virtual async Task<List<TEntity>> GetAll()
     {
         return await _dbSet.AsNoTracking().ToListAsync(); // Usar o AsNoTracking -> pois está apenas lendo os dados, não vai modificar => ele reduz o uso de memória e processamento
     }
 
-    public async Task<TEntity> GetById(long id)
+    public virtual async Task<TEntity> GetById(long id)
     {
         return await _dbSet.FindAsync(id);
     }

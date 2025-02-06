@@ -26,6 +26,7 @@ public static class InjectionDependencyExtension
         services.AddScoped<IProductValidateService, ProductValidateService>();
         services.AddAutoMapper(typeof(MappingProfile));
 
+
         return services;
     }
 }

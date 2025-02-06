@@ -17,4 +17,9 @@ public class ProductRepository : Repository<Product>, IProductRepository
     {
         return _dbSet.Where(i => listCategoryId.Contains(i.CategoryId)).ToListAsync();
     }
+
+    public override async Task<List<Product>> GetAll()
+    {
+        return await _dbSet.Include(i => i.Category).AsNoTracking().ToListAsync(); // Usar o AsNoTracking -> pois está apenas lendo os dados, não vai modificar => ele reduz o uso de memória e processamento
+    }
 }

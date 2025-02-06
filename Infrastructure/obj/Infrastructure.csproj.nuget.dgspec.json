@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Infrastructure\\Infrastructure.csproj": {}
+    "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\Arguments.csproj": {
+    "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\Arguments.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\Arguments.csproj",
+        "projectUniqueName": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\Arguments.csproj",
         "projectName": "Arguments",
-        "projectPath": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\Arguments.csproj",
-        "packagesPath": "C:\\Users\\Arthur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\obj\\",
+        "projectPath": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\Arguments.csproj",
+        "packagesPath": "C:\\Users\\arthu_dzh116v\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\arthu_dzh116v\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,8 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -90,21 +95,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Arthur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\arthu_dzh116v\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arthur\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\arthu_dzh116v\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -118,8 +127,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\Arguments.csproj": {
-                "projectPath": "C:\\Users\\Arthur\\Source\\Repos\\Shop\\Arguments\\Arguments.csproj"
+              "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\Arguments.csproj": {
+                "projectPath": "C:\\Users\\arthu_dzh116v\\source\\repos\\Shop\\Arguments\\Arguments.csproj"
               }
             }
           }
@@ -132,8 +141,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -184,7 +194,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
